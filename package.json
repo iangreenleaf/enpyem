@@ -7,6 +7,9 @@
     "url": ""
   },
   "main": "enpyem.coffee",
+  "bin" : {
+    "enpyem" : "cli.js"
+  },
   "scripts": {
     "test": "make test"
   },
