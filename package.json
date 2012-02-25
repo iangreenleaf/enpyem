@@ -6,7 +6,7 @@
   "repository": {
     "url": ""
   },
-  "main": "src/enpyem.coffee",
+  "main": "lib/enpyem.js",
   "bin" : {
     "enpyem" : "lib/cli.js"
   },
