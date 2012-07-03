@@ -1,16 +1,13 @@
-npm = require "npm"
 readInstalled = require "read-installed"
 path = require "path"
+npmReg = require "npm-registry-client"
+client = new npmReg registry: "http://registry.npmjs.org/", cache: "."
 
 module.exports.updateable = ->
-  npm.load {"loglevel":"error"}, (err) ->
-    throw err if err?
-    readInstalled path.resolve(npm.dir, ".."), (err, data) ->
-      for _,pkg of data.dependencies
-        continue unless pkg.name?
-        do (pkg) ->
-          npm.commands.view [pkg.name], true, (err, data) ->
-            for _,data of data
-              latestVersion = data.versions.pop()
-              if pkg.version isnt latestVersion
-                console.log "#{pkg.name} is #{pkg.version}, could be #{latestVersion}"
+  readInstalled path.resolve("."), (err, data) ->
+    for _,pkg of data.dependencies
+      continue unless pkg.name?
+      do (pkg) ->
+        client.get "#{pkg.name}/latest", (err, latest) ->
+          if pkg.version isnt latest.version
+            console.log "#{pkg.name} is #{pkg.version}, could be #{latest.version}"
