@@ -2,7 +2,7 @@
   "author": "Ian Young <ian.greenleaf@gmail.com> (http://www.iangreenleaf.com)",
   "name": "enpyem",
   "description": "Npm utilities for the developer who's never satisfied",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "repository": {
     "url": ""
   },
